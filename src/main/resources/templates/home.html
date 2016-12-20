@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MongoDB/Spring Boot</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-spacing: 0px;
+            background: beige;
+        }
+        th, td {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<h2>Cars Crud</h2>
+<fieldset>
+    <legend>Details</legend>
+    <table>
+
+
+        <thead>
+        <tr>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Description</th>
+            <th>Year</th>
+        </tr>
+        </thead>
+            <tbody>
+                <tr th:each="car : ${carList}">
+                    <td th:text="${car.make}"></td>
+                    <td th:text="${car.model}"></td>
+                    <td th:text="${car.description}"></td>
+                    <td th:text="${car.year}"></td>
+                    <td></td>
+                </tr>
+            </tbody>
+    </table>
+</fieldset>
+<br />
+<h2>Add Car</h2>
+    <fieldset>
+        <legend>Add a car</legend>
+        <form action="/addCar" method="POST">
+            Make <br /> <input type="text" id="make" name="make" /><br />
+            Model <br /> <input type="text" id="model" name="model" /><br />
+            Year <br /> <input type="text" id="year" name="year" /><br />
+            Description <br /> <textarea rows="5" cols="70" id="description" name="description" /><br />
+            <input type="submit" />
+        </form>
+    </fieldset>
+<h2>Search for cars</h2>
+<fieldset>
+    <legend>Search Car</legend>
+        <form action="/search" method="GET">
+            <input type="text" name="search" id="search" th:value="${search}" />
+            <input type="submit" value="Search" />
+        </form>
+</fieldset>
+</body>
+</html>
